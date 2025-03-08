@@ -12,6 +12,21 @@ Imagine you are giving a brief lesson on Recursion to a relatively new programme
 - An explanation of the kinds of functions that are best solved using recursion.
 
 ### Response 1
+Recursion is the act of a function calling itself, receiving two inputs: a base case, which ends recursion, and a recursive case, which resumes recursion.
+
+```js
+
+const countdown = (num) {
+    if (num <= 0) console.log(num);
+    console.log(num);
+    countdown(num - 1);
+}
+
+```
+
+This function logs statements to the console, representing a countdown from `num`, a numerical argument. Before `num` is reached, `countdown` logs `num` to the console and recurses, this time with an argument of one lesser than the current value of `num`. As the invocations continue, `num` is logged to the console with each recursive case until the base case, where `num` is equal to or less than (in case the initial value of `num` is negative or non-whole) zero. Once the base case's condition is reached, the final value of `num` is logged and the recursion concludes.
+
+Recursion should be used when problems can be broken down into smaller, similar subproblems. Recursion is a suitable alternative for problems which, when solved iteratively, are more complex and less readable. Using recursion can simplify problems and reduce code size at the cost of memory usage and performance. Although recursive functions can significantly greaten performance time due to overhead, they are a natural fit for problems such as most sorting algorithms and tree traversals.
 
 ## Prompt 2
 
@@ -85,6 +100,23 @@ Imagine you are giving a brief lesson on the Tree data structure to a relatively
 Any iterative function can be written recursively. Provide an example of an iterative function and the same function written recursively. Then, explain the benefits and/or drawbacks of each approach.
 
 ### Response 3
+```js
+    const iter = arr => {
+        const double = [];
+        for (let i = 0; i < arr.length, i++) {
+            double.push(arr[i] * 2);
+        }
+        return double;
+    }
+
+    const recur = (arr, double = [], i = 0) => {
+        if (i >= arr.length) return double;
+        double.push(arr[i] * 2);
+        recur(arr, double, i + 1);
+    }
+```
+
+While these functions have the same functionality, `iter` doubles each item in the argument `arr` iteratively while `recur` does so recursively. This function is suitable for the iterative approach: it is not complicated and only requires one for loop without addition conditional statements, assuming `arr` is composed entirely of values that can be doubled as these functions lack error handling. Although `iter` uses more lines than `recur`, it is straightforward and easy to understand even without the recursive approach. Although `recur` is a shorter function, it uses extra space: `double` and `i` are extra parameters with initialized values. As the function is simple, recursion does not provide any significant benefit as the stacked invocations increase performance time and memory.
 
 ## Prompt 4
 
